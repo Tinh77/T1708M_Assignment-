@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -101,6 +102,7 @@ class CategoryController extends Controller
             return response()->json(['error' => 'not found'], 404);
         }
         $obj->delete();
+        Log::debug($obj->delete());
         return response()->json(['message' => 'Delete'], 200);
     }
 }

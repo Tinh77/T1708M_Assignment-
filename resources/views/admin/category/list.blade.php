@@ -30,18 +30,18 @@
     <script>
         $('.delete-link').click(function () {
             var cateId = this.id;
-            console.log(cateId);
             // return false;
             var confirm_user = confirm('Are you sure ?');
             if (confirm_user) {
                 $.ajax({
-                    url: 'http://localhost:8000/admin/category/' + cateId,
-                    method: 'DELETE',
+                    url: '/admin/category/' + cateId,
+                    type: 'DELETE',
                     data: {
                         '_token': "{{csrf_token()}}"
                     },
-                    success: function () {
-                        alert('Xoa thanh cong');
+                    success: function (data) {
+                        console.log(data);
+                        // alert('Xoa thanh cong');
                         window.location.reload()
                     },
                     error: function () {
@@ -50,6 +50,7 @@
                 });
             } else {
                 alert('!Okie');
+                return false;
             }
         });
     </script>

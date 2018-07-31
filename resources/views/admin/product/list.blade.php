@@ -40,15 +40,25 @@
                             </div>
                         </td>
                         <td>{{$obj -> name}}</td>
-                        <td>{{$obj -> category->title}}</td>
+                        <td>
+                            @if(isset($obj->category))
+                                {{$obj->category->title}}
+                            @else
+                                NULLw
+                            @endif
+                        </td>
                         <td>{{$obj -> description}}</td>
                         <td>
                             <a href="/admin/product/{{$obj -> id}}/edit">Edit</a>
-                            <a href="/admin/product/{{$obj -> id}}" id="{{$obj -> id}}" class="delete-link btn-sm btn btn-danger">Delete</a>
+                            <a href="/admin/product/{{$obj -> id}}" id="{{$obj -> id}}"
+                               class="delete-link btn-sm btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 @endforeach
             </table>
+            <div class="float-right">
+                {{$products_in_view->links()}}
+            </div>
         </div>
     </div>
     <script>

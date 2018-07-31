@@ -26,7 +26,8 @@ class ProductController extends Controller
                 ->with('categoryId', $categoryId);
 
         } else {
-            $product = Product::where('categoryId', Input::get('categoryId'))->oderBy('created_at', 'desc')->paginate(5);
+            $product = Product::where('categoryId', Input::get('categoryId'))
+                ->orderBy('created_at', 'desc')->paginate(1);
             return view('admin.product.list')
                 ->with('products_in_view', $product)
                 ->with('categories', $categories)
